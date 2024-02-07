@@ -199,3 +199,8 @@ $UserProfileJson.UserProfile | Get-Member -MemberType Properties | Select-Object
 Write-Host "Updating userprofile..."
 Set-Content -Path "$UserProfile" -Value ($UserProfileJson | ConvertTo-Json -Depth 100)
 Write-Host "Done"
+
+Write-Host "Press any key to continue..."
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+
+exit 0
