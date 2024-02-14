@@ -23,12 +23,7 @@ if ($args.Length -gt 0) {
                 exit 0
             }
             Write-Host "Clearing cache..."
-            $inp = Read-Host "Do you want to delete $CacheDir? (y/n)"
-            if ($inp -ne "y") {
-                Write-Host "Aborted"
-                exit 0
-            }
-            Remove-Item -Path "$CacheDir\*" -Recurse
+            Remove-Item -Path "$CacheDir\*" -Recurse -Confirm
             Write-Host "Done"
             exit 0
         }
