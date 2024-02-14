@@ -4,23 +4,26 @@ The installer allows you to download mods from mod.io in semi-automatic mode. On
 
 Tested on game builds with the Steam version. The Epic Games Store version should also work, but it is not tested.
 
+### How to use:
 
-### Instructions:
-1. Copy the latest version of [ModIO_SR.ps1](https://raw.githubusercontent.com/AryanVerma1024/SnowRunner_mod_installer/master/ModIO_SR.ps1) into a ps1 file. (Also do the same for [env.ps1](https://raw.githubusercontent.com/AryanVerma1024/SnowRunner_mod_installer/master/env.ps1))
-2. Register on mod.io website
-3. Create a token in your profile https://mod.io/me/access (you must first confirm the API Access Terms). The token name can be anything.
-4. In the env.ps1 file, add the token to it, edit path to the mods folder and path to user profile:
-   - mod folder: C:/Users/USER_NAME/Documents/My Games/SnowRunner/base/Mods/.modio/mods
-   - Steam profile: C:/Program Files (x86)/Steam/userdata/USER_ID/1465360/remote/user_profile.cfg
-5. Block the game's access to the Internet through Windows firewall: press Win + R and run wf.msc, create a rule for outgoing connections, select "For program", specify path to the game (you can specify a shortcut on the desktop), select "Block connection".
-6. Replace file C:/Program Files (x86)/Steam/userdata/USER_ID/1465360/remote/user_profile.cfg (or C:/Users/USER_NAME/Documents/My Games/SnowRunner/base/storage/0/user_profile.dat) with user_profile.cfg from the archive (rename it to user_profile.dat if you have EGS version).
-7. Subscribe (or unsubscribe) to the desired mods on mod.io
-8. Run the ps1 file you created, wait until all the mods you subscribed to are downloaded.
-9. Start the game, go to "LOAD GAME", exit back (needed to activate the "MOD BROWSER" item) or just wait a few seconds.
-10. Go to "MOD BROWSER" and enable the necessary mods. The vehicles will become available in the store, the custom maps will become available in "Custom scenarios". Pictures of mods in the menu are also displayed.
+1. Download/clone the repository on your computer.
+2. Register for an account on [mod.io](https://mod.io/).
+3. Go to [/me/access](https://mod.io/me/access).
+4. Click on accept API access terms (idr if this is necessary for getting o-auth token but eh do it anyways).
+5. Below that there will be a OAuth2 section, give a name for a client (can be anything) and click on create client.
+6. Then in the token field, write a new name and generate a token.
+7. Copy the token and paste it in the `env.ps1` file in the `ACCESS_TOKEN` variable within the quotes, remember that it is only shown once so make sure to save it somewhere.
+8. Open the `env.ps1` file and change the `MODS_DIR` and `USER_PROFILE` variables to the correct paths.
+   - MODS_DIR: `C:/Users/USER_NAME/Documents/My Games/SnowRunner/base/Mods/.modio/mods`
+   - USER_PROFILE: `C:/Program Files (x86)/Steam/userdata/USER_ID/1465360/remote/user_profile.cfg`
+9. Replace the `user_profile.cfg` file in the `USER_PROFILE` path with the one provided in the repository.
+10. Subscribe to the mods you want on mod.io.
+11. Run the `ModIO_SR.ps1` file (you can run it by right clicking and selecting run with powershell) and wait until all the mods you subscribed to are downloaded.
+12. Start the game and wait a few seconds for the game to load all the mods you have downloaded, or go to "LOAD GAME" and exit back to the main menu to activate the "MOD BROWSER" item.
+13. Go to "MOD BROWSER" and enable the necessary mods. The vehicles will become available in the store, the custom maps will become available in "Custom scenarios".
 
-After new subscriptions or unsubscribes on the mod.io website, repeat everything from step 8. After unsubscribing and launching the installer, the mod is deactivated and removed from the list of modifications. However, the folder with mod files remains on the disk (in the cache C:/Users/USER_NAME/Documents/My Games/SnowRunner/base/Mods/.modio/cache), and if you subscribe to the mod again, then after running the installer the mod will not exist download again, and will move from the cache to the mods folder, but you will need to manually turn it on again in the game in "MOD BROWSER".
+After new subscriptions or unsubscribes on the mod.io website, repeat everything from step 11. After unsubscribing and launching the installer, the mod is deactivated and removed from the list of modifications. However, the folder with mod files remains on the disk (in the cache `C:/Users/USER_NAME/Documents/My Games/SnowRunner/base/Mods/.modio/cache`), and if you subscribe to the mod again, then after running the installer the mod will not exist download again, and will move from the cache to the mods folder, but you will need to manually turn it on again in the game in "MOD BROWSER".
 
-If you need to remove all mods from the cache, run the installer with --clear-cache or -c argument.
+If you need to remove all mods from the cache, run the installer with `--clear-cache` or `-c` argument.
 
-If you need to download new versions of mods, run the installer with --update or -u argument (without this argument, only a message about new versions of mods will appear).
+If you need to download new versions of mods, run the installer with `--update` or `-u` argument (without this argument, only a message about new versions of mods will appear).

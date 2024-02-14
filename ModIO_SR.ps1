@@ -11,6 +11,10 @@ $debug = 0
 if ($args.Length -gt 0) {
     foreach ($arg in $args) {
         if ($arg -eq "-c" -or $arg -eq "--clear-cache") {
+            if (-not (Test-Path "$CacheDir")) {
+                Write-Host "Cache directory does not exist, nothing to clear..."
+                exit 0
+            }
             Write-Host "Clearing cache..."
             Remove-Item -Path "$CacheDir\*" -Recurse -Force
             Write-Host "Done"
