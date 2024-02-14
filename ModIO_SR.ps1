@@ -7,6 +7,13 @@ $debug = 0
 # -d or --debug       : show debug output
 # -v or --version     : show version
 
+# load env vars
+. .\env.ps1
+$AccessToken = $ACCESS_TOKEN
+$UserProfile = $USER_PROFILE
+$ModsDir = $MODS_DIR
+$CacheDir = "$ModsDir\..\cache"
+
 # check if args are given
 if ($args.Length -gt 0) {
     foreach ($arg in $args) {
@@ -16,7 +23,12 @@ if ($args.Length -gt 0) {
                 exit 0
             }
             Write-Host "Clearing cache..."
-            Remove-Item -Path "$CacheDir\*" -Recurse -Force
+            $inp = Read-Host "Do you want to delete $CacheDir? (y/n)"
+            if ($inp -ne "y") {
+                Write-Host "Aborted"
+                exit 0
+            }
+            Remove-Item -Path "$CacheDir\*" -Recurse
             Write-Host "Done"
             exit 0
         }
@@ -40,12 +52,6 @@ if ($args.Length -gt 0) {
 # set debug preference
 if ($debug -eq 1) { $DebugPreference = "Continue" }
 
-# load env vars
-. .\env.ps1
-$AccessToken = $ACCESS_TOKEN
-$UserProfile = $USER_PROFILE
-$ModsDir = $MODS_DIR
-$CacheDir = "$ModsDir\..\cache"
 
 # Write-Debug $AccessToken
 Write-Debug $UserProfile
