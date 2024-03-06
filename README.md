@@ -1,13 +1,10 @@
-# Snowrunner-Mod-Installer
-Install mods for "Snowrunner" from Mod.io
-
 ## Mods installer from mod.io to SnowRunner
 
 The installer allows you to download mods from mod.io in semi-automatic mode. Once you complete all the steps according to the instructions, you will be able to subscribe to the desired mods, then the installer will download them itself.
 
 Tested on game builds from Steam. Epic Games Store is not tested, you may create a pull request adding the support for it if you want.
 
-## How to use
+### How to use:
 
 1. Download/clone the repository on your computer.
 2. Register for an account on [mod.io](https://mod.io/).
@@ -30,12 +27,8 @@ After you subscribe to a new mod or unsubscribe from an existing one, run the in
 
 The installer will not remove the mods from the cache folder, so if you need to remove them, you will need to do it with the argument given below.
 
-## Arguments
+### Arguments:
 
 If you need to remove all mods from the cache, run the installer with `--clear-cache` or `-c` argument.
 
 If you need to download new versions of mods, run the installer with `--update` or `-u` argument (without this argument, only a message about new versions of mods will appear).
-
-## Credits
-
-- [Equdevel/Snowrunner_mod_installer](https://github.com/equdevel/SnowRunner_mod_installer) - The original script for Snowrunner written in python.
